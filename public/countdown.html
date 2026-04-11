@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>目标倒计时</title>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --bg-color: #f5f7fa;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --border-color: #e1e1e1;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px 0;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+	.instruction {
+    	text-align: center;
+    	color: #666;
+    	font-size: 14px;
+    	margin-bottom: 25px;
+    	line-height: 1.5;
+	}
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+            background-color: #fff;
+            appearance: none; /* 移除默认样式 */
+            -webkit-appearance: none;
+            padding-right: 30px; /* 为自定义箭头留空间 */
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%23333333%22%20d%3D%22M6%208.825L1.175%204l.7-.7L6%207.425l4.125-4.125.7.7z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 12px;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #357abd;
+        }
+
+        .result-section {
+            margin-top: 30px;
+            text-align: center;
+            display: none; /* 初始隐藏 */
+        }
+
+        .current-age {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+
+        .countdown-item {
+            background-color: var(--bg-color);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .countdown-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .total-days {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⏳ 目标倒计时</h1>
+	<div class="instruction">输入出生日期，并设定目标年龄。为您计算距剩余时间。</div>
+        
+        <div class="form-group">
+            <label for="birthYear">出生年份</label>
+            <select id="birthYear"></select>
+        </div>
+
+        <div class="form-group">
+            <label for="birthMonth">出生月份</label>
+            <select id="birthMonth"></select>
+        </div>
+
+        <div class="form-group">
+            <label for="birthDay">出生日期</label>
+            <select id="birthDay"></select>
+        </div>
+
+        <div class="form-group">
+            <label for="targetAge">目标年龄 (终点)</label>
+            <input type="number" id="targetAge" placeholder="例如：60">
+        </div>
+
+        <button onclick="calculateTime()">开始计算</button>
+
+        <div class="result-section" id="resultSection">
+            <div class="current-age">你现在 <span id="currentYears">0</span> 岁，距离目标还剩</div>
+            
+            <div class="countdown-grid">
+                <div class="countdown-item">
+                    <span class="countdown-value" id="yearsLeft">0</span>
+                    <span class="countdown-label">年</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="monthsLeft">0</span>
+                    <span class="countdown-label">月</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="daysLeft">0</span>
+                    <span class="countdown-label">日</span>
+                </div>
+            </div>
+
+            <div class="total-days">日子总数：<span id="totalDays">0</span> 天</div>
+        </div>
+    </div>
+
+    <script>
+        // 获取当前年份
+        const currentYear = new Date().getFullYear();
+        
+        // 计算起始年份 (当前年份 - 100)
+        const startYear = currentYear - 100;
+        
+        // 默认值配置
+        const defaultBirthYear = 2000;
+        const defaultBirthMonth = 1;
+        const defaultBirthDay = 1;
+        const defaultTargetAge = 60;
+
+        // 初始化年份选择器
+        const yearSelect = document.getElementById('birthYear');
+        for (let i = startYear; i <= currentYear; i++) {
+            const option = document.createElement('option');
+            option.value = i;
+            option.text = i + "年";
+            // 设置默认选中
+            if (i === defaultBirthYear) {
+                option.selected = true;
+            }
+            yearSelect.appendChild(option);
+        }
+
+        // 初始化月份选择器
+        const monthSelect = document.getElementById('birthMonth');
+        for (let i = 1; i <= 12; i++) {
+            const option = document.createElement('option');
+            option.value = i;
+            option.text = i + "月";
+            if (i === defaultBirthMonth) {
+                option.selected = true;
+            }
+            monthSelect.appendChild(option);
+        }
+
+        // 初始化日期选择器
+        const daySelect = document.getElementById('birthDay');
+        for (let i = 1; i <= 31; i++) {
+            const option = document.createElement('option');
+            option.value = i;
+            option.text = i + "日";
+            if (i === defaultBirthDay) {
+                option.selected = true;
+            }
+            daySelect.appendChild(option);
+        }
+
+        // 初始化目标年龄
+        document.getElementById('targetAge').value = defaultTargetAge;
+
+        // 日期选择联动 (处理大小月和闰年)
+        function updateDays() {
+            const year = parseInt(yearSelect.value);
+            const month = parseInt(monthSelect.value);
+            const currentDay = parseInt(daySelect.value);
+            
+            // 获取该月最大天数
+            const daysInMonth = new Date(year, month, 0).getDate();
+            
+            // 保存当前选中的天数
+            daySelect.innerHTML = '';
+            
+            for (let i = 1; i <= daysInMonth; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.text = i + "日";
+                // 如果当前天数在有效范围内，保持选中，否则选中最后一天
+                if (i === currentDay && currentDay <= daysInMonth) {
+                    option.selected = true;
+                } else if (i === daysInMonth) {
+                    option.selected = true;
+                }
+                daySelect.appendChild(option);
+            }
+        }
+
+        yearSelect.addEventListener('change', updateDays);
+        monthSelect.addEventListener('change', updateDays);
+
+        function calculateTime() {
+            const birthYear = parseInt(yearSelect.value);
+            const birthMonth = parseInt(monthSelect.value);
+            const birthDay = parseInt(daySelect.value);
+            const targetAge = parseInt(document.getElementById('targetAge').value);
+
+            if (!birthYear || !birthMonth || !birthDay || !targetAge) return;
+
+            // 1. 创建日期对象
+            const birthDate = new Date(birthYear, birthMonth - 1, birthDay);
+            const targetDate = new Date(birthYear + targetAge, birthMonth - 1, birthDay);
+            const today = new Date();
+
+            // 2. 计算当前年龄
+            let currentAge = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                currentAge--;
+            }
+            document.getElementById('currentYears').innerText = currentAge;
+
+            // 3. 计算倒计时 (目标日期 - 今天)
+            let diffYears = targetDate.getFullYear() - today.getFullYear();
+            let diffMonths = targetDate.getMonth() - today.getMonth();
+            let diffDays = targetDate.getDate() - today.getDate();
+
+            // --- 借位逻辑修正 ---
+            
+            // 处理天数借位
+            if (diffDays < 0) {
+                diffMonths--; // 向月份借1
+                // 获取上一个月的总天数
+                const prevMonthLastDay = new Date(targetDate.getFullYear(), targetDate.getMonth(), 0).getDate();
+                diffDays += prevMonthLastDay;
+            }
+
+            // 处理月份借位
+            if (diffMonths < 0) {
+                diffYears--; // 向年份借1
+                diffMonths += 12;
+            }
+
+            // 防止出现负数（如果已过目标日期）
+            if (diffYears < 0) {
+                diffYears = 0;
+                diffMonths = 0;
+                diffDays = 0;
+            }
+
+            document.getElementById('yearsLeft').innerText = diffYears;
+            document.getElementById('monthsLeft').innerText = diffMonths;
+            document.getElementById('daysLeft').innerText = diffDays;
+
+            // 4. 计算总天数 (目标日期 - 今天)
+            const diffTime = Math.abs(targetDate - today);
+            const totalDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+            document.getElementById('totalDays').innerText = totalDays;
+
+            // 显示结果
+            document.getElementById('resultSection').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

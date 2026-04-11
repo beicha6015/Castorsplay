@@ -1,8 +1,8 @@
 {
 	"meta": {
-		"title": "YYsuni",
-		"description": "YYsuni 的个人博客，记录前端开发、探索、笔记。前端 UI 更新代码仓库。",
-		"username": "Suni"
+		"title": "XXblog",
+		"description": "正在开发中",
+		"username": "Castor"
 	},
 	"theme": {
 		"colorBrand": "#de4331",
@@ -30,6 +30,14 @@
 		{
 			"id": "a46372ff45bc5524",
 			"url": "/images/art/a46372ff45bc5524.jpg"
+		},
+		{
+			"id": "75463500c8c08927",
+			"url": "/images/art/75463500c8c08927.jpg"
+		},
+		{
+			"id": "3fbafe7ead60c1c7",
+			"url": "/images/art/3fbafe7ead60c1c7.jpg"
 		}
 	],
 	"currentArtImageId": "a46372ff45bc5524",
@@ -37,28 +45,33 @@
 		{
 			"id": "",
 			"url": ""
+		},
+		{
+			"id": "b0e38888b78052f1",
+			"url": "/images/background/b0e38888b78052f1.jpg"
+		},
+		{
+			"id": "f37e7e1c1d7daafd",
+			"url": "/images/background/f37e7e1c1d7daafd.gif"
+		},
+		{
+			"id": "50d5dff60c7b3931",
+			"url": "/images/background/50d5dff60c7b3931.gif"
 		}
 	],
-	"currentBackgroundImageId": "",
+	"currentBackgroundImageId": "b0e38888b78052f1",
 	"socialButtons": [
 		{
 			"id": "github",
 			"type": "github",
-			"value": "https://github.com/yysuni",
+			"value": "https://github.com/beitea6015",
 			"label": "Github",
-			"order": 3
-		},
-		{
-			"id": "juejin",
-			"type": "juejin",
-			"value": "https://juejin.cn/user/2427311675422382",
-			"label": "稀土掘金",
 			"order": 2
 		},
 		{
 			"id": "email",
 			"type": "email",
-			"value": "yysuni1001@gmail.com",
+			"value": "2236448769@qq.com",
 			"label": "",
 			"order": 1
 		}

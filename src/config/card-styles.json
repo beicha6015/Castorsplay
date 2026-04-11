@@ -104,5 +104,13 @@
 		"offsetX": null,
 		"offsetY": null,
 		"enabled": false
+	},
+	"countdownCard": {
+		"width": 200,
+		"height": 80,
+		"order": 9,
+		"offsetX": null,
+		"offsetY": null,
+		"enabled": true
 	}
 }
