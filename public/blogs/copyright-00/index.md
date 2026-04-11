@@ -4,6 +4,8 @@
 
 部署教程： https://www.bilibili.com/video/BV1qWFKzcEkh/
 
+部署后vercel和github.app的域名需要翻墙，所以在vercel添加了自己申请的域名。
+
 国内域名申请：dpdns。
 云服务器代理：cloudflare
 申请教程：https://blog.csdn.net/2301_79728896/article/details/149158540
