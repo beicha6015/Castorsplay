@@ -1,4 +1,4 @@
-网站项目源自YYsuni的开源仓库。
+网站项目源自YYsuni的开源仓库。导航栏的工具、网站、博客推荐均为原博主YYsuni的推荐。
 
 网站：https://github.com/YYsuni/2025-blog-public
 
