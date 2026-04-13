@@ -104,7 +104,7 @@ export default function CountdownCard() {
 			animate={{ opacity: mounted ? 1 : 0 }}
 			transition={{ duration: 0.3 }}
 			onClick={() => {
-				window.location.href = '/倒计时.html'
+				window.location.href = '/countdown.html'
 			}}
 			onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.opacity = '0.85' }}
 			onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.opacity = '1' }}>
