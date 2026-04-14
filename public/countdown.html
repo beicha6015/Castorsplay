@@ -142,6 +142,48 @@
             color: #e74c3c;
             font-weight: bold;
         }
+
+	  /* 进度条容器 */
+  .progress-container {
+    margin-top: 25px; /* 与上方文字保持距离 */
+    width: 100%; /* 宽度100%，与按钮对齐 */
+  }
+
+  /* 进度条轨道 */
+  .progress-bar {
+	position: relative; /* 👈【关键修复】增加这行代码，让内部的文字以它为参考点 */
+    width: 100%;
+    height: 24px; /* 进度条高度 */
+    background-color: #ecf0f1; /* 轨道浅灰色背景 */
+    border-radius: 12px; /* 圆角 */
+    overflow: hidden; /* 关键：隐藏溢出以实现圆角填充效果 */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) inset; /* 内阴影，增加立体感 */
+  }
+
+  /* 进度条填充（黄色部分） */
+  .progress-fill {
+    height: 100%;
+    width: 0; /* 初始为0 */
+    background: linear-gradient(90deg, #ffeb3b, #fdd835); /* 亮黄到深一点的黄 */
+    border-radius: 12px 0 0 12px; /* 左侧圆角 */
+    transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* 流畅的缓动动画 */
+  }
+  /* 进度条上的百分比文字 */
+  .progress-text {
+    position: absolute; /* 绝对定位，覆盖在进度条上 */
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%); /* 垂直居中 */
+    text-align: center; /* 水平居中 */
+    color: rgba(0, 0, 0, 0.8); /* 深色文字，确保在黄色背景上可读 */
+    font-size: 14px;
+    font-weight: bold;
+    pointer-events: none; /* 让文字不阻挡鼠标点击进度条区域 */
+    z-index: 2; /* 置于顶层 */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* 白色描边效果，防止看不清 */
+  }
+
     </style>
 </head>
 <body>
@@ -190,6 +232,16 @@
             </div>
 
             <div class="total-days">日子总数：<span id="totalDays">0</span> 天</div>
+	    <div class="total-days">你已经生活了：<span id="daysLived">0</span> 天</div>
+
+      		      <!-- 人生进度条 -->
+      			<div class="progress-container">
+        		<div class="progress-bar">
+          		<div class="progress-fill" id="progressFill"></div>
+          		<!-- 进度百分比数字 -->
+          		<span class="progress-text" id="progressText">0%</span>
+        	</div>
+      		</div>
         </div>
     </div>
 
@@ -332,6 +384,41 @@
             const diffTime = Math.abs(targetDate - today);
             const totalDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
             document.getElementById('totalDays').innerText = totalDays;
+
+	    // 计算今天 - 出生日期
+	const livedTime = Math.abs(today - birthDate);
+	const daysLived = Math.floor(livedTime / (1000 * 60 * 60 * 24));
+	document.getElementById('daysLived').innerText = daysLived;
+  // 5. 计算并更新进度条 (基于60岁总寿命)
+  const MAX_AGE = 60; // 设定人生终点为60岁
+  const birthToMaxDate = new Date(birthDate.getFullYear() + MAX_AGE, birthDate.getMonth(), birthDate.getDate());
+  
+  // 总毫秒数 (60岁人生)
+  const totalLifeMs = birthToMaxDate - birthDate;
+  // 已过毫秒数
+  const livedMs = today - birthDate;
+
+  // 计算百分比
+  let progressPercent = 0;
+  if (totalLifeMs > 0) {
+    progressPercent = (livedMs / totalLifeMs) * 100;
+  }
+
+  // 限制最大值为100% (防止超过60岁显示异常)
+  const clampedProgress = Math.min(progressPercent, 100);
+  
+  // 更新DOM
+  const progressFill = document.getElementById('progressFill');
+  if (progressFill) {
+    progressFill.style.width = clampedProgress + '%';
+  }
+  // 同时更新百分比数字 (保留1位小数)
+  const progressText = document.getElementById('progressText');
+  if (progressText) {
+    // 如果超过60岁，显示100%，否则显示计算出的百分比
+    const displayPercent = clampedProgress >= 100 ? 100 : clampedProgress.toFixed(1);
+    progressText.innerText = displayPercent + ' %';
+  }
 
             // 显示结果
             document.getElementById('resultSection').style.display = 'block';

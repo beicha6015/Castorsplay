@@ -12,6 +12,7 @@ import LikePosition from './like-position'
 import HatCard from './hat-card'
 import BeianCard from './beian-card'
 import CountdownCard from './countdown-card'
+import CountdownPosition from './countdown-position'
 import { useSize } from '@/hooks/use-size'
 import { motion } from 'motion/react'
 import { useLayoutEditStore } from './stores/layout-edit-store'
@@ -87,9 +88,10 @@ export default function Home() {
 				{cardStyles.articleCard?.enabled !== false && <AritcleCard />}
 				{!maxSM && cardStyles.writeButtons?.enabled !== false && <WriteButtons />}
 				{cardStyles.likePosition?.enabled !== false && <LikePosition />}
+	{maxSM && cardStyles.countdownPosition?.enabled !== false && <CountdownPosition />}
 				{cardStyles.hatCard?.enabled !== false && <HatCard />}
 				{cardStyles.beianCard?.enabled !== false && <BeianCard />}
-				<CountdownCard />
+				{!maxSM && cardStyles.countdownCard?.enabled !== false && <CountdownCard />}
 			</div>
 
 			{siteContent.enableChristmas && <SnowfallBackground zIndex={2} count={!maxSM ? 125 : 20} />}
