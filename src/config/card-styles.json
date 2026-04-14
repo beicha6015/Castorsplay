@@ -112,5 +112,13 @@
 		"offsetX": null,
 		"offsetY": null,
 		"enabled": true
+	},
+	"countdownPosition": {
+		"width": 54,
+		"height": 54,
+		"order": 9,
+		"offsetX": null,
+		"offsetY": null,
+		"enabled": true
 	}
 }
