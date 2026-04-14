@@ -1,5 +1,16 @@
 [
   {
+    "slug": "xcard-01",
+    "title": "原创功能",
+    "tags": [
+      "卡片"
+    ],
+    "date": "2026-04-14T17:56",
+    "summary": "原创功能说明",
+    "hidden": false,
+    "category": "总结"
+  },
+  {
     "slug": "copyright-00",
     "title": "网站声明",
     "tags": [],
