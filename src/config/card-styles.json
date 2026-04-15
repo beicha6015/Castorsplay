@@ -120,5 +120,13 @@
 		"offsetX": null,
 		"offsetY": null,
 		"enabled": true
+	},
+	"happyCapsulePosition": {
+		"width": 54,
+		"height": 54,
+		"order": 9,
+		"offsetX": null,
+		"offsetY": null,
+		"enabled": true
 	}
 }

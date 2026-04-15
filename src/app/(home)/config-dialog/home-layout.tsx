@@ -19,7 +19,8 @@ const CARD_LABELS: Record<string, string> = {
 	likePosition: '点赞',
 	hatCard: '帽子',
 	beianCard: '备案',
-	countdownCard: '倒计时'
+	countdownCard: '倒计时',
+	happyCapsulePosition: '开心胶囊'
 }
 
 interface HomeLayoutProps {
