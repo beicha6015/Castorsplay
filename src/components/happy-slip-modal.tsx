@@ -102,7 +102,15 @@ export default function HappySlipModal({ open, onClose }: HappySlipModalProps) {
 
 							{/* 纯文字 */}
 							{slip.type === 'text' && (
-								<p className='leading-relaxed bg-gradient-to-r from-pink-500 via-purple-500 to-amber-500 bg-clip-text text-transparent font-medium'>
+								<p
+									className='capsule-text leading-relaxed font-medium'
+									style={{
+										background: 'linear-gradient(to right, #f59e0b, #fde047, #fb923c)',
+										WebkitBackgroundClip: 'text',
+										WebkitTextFillColor: 'transparent',
+										backgroundClip: 'text',
+										color: 'transparent'
+									}}>
 									{slip.content}
 								</p>
 							)}
@@ -130,7 +138,14 @@ export default function HappySlipModal({ open, onClose }: HappySlipModalProps) {
 											/>
 										</div>
 									)}
-									<p className='leading-relaxed text-sm bg-gradient-to-r from-pink-500 via-purple-500 to-amber-500 bg-clip-text text-transparent font-medium'>
+									<p className='capsule-text leading-relaxed text-sm font-medium'
+										style={{
+											background: 'linear-gradient(to right, #f59e0b, #fde047, #fb923c)',
+											WebkitBackgroundClip: 'text',
+											WebkitTextFillColor: 'transparent',
+											backgroundClip: 'text',
+											color: 'transparent'
+										}}>
 										{slip.content}
 									</p>
 								</div>
