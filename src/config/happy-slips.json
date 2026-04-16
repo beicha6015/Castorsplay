@@ -54,6 +54,11 @@
       "type": "mixed",
       "content": "zy：多年以后，是否还会记得这样一个平凡的夜晚，和朋友忙完在校门口小聚，在樱花树下吹着晚风，走走停停，漫无目的。",
       "imageUrl": "/images/zy.jpg"
+    },
+    {
+      "id": 11,
+      "type": "text",
+      "content": "cph:想创死全世界"
     }
   ]
 }
