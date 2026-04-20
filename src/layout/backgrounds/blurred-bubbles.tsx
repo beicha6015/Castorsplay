@@ -19,7 +19,7 @@ export default function BlurredBubblesBackground({
 	speed = 0.12,
 	noiseScale = 0.0008,
 	noiseTimeScale = 0.00015,
-	targetFps = 6,
+	targetFps = 4,
 	debugFps = false,
 	startDelayMs = 1500,
 	regenerateKey = 0

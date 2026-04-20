@@ -18,12 +18,9 @@ const nextConfig: NextConfig = {
 				loaders: ['@svgr/webpack'],
 				as: '*.js'
 			}
-			// ...codeInspectorPlugin({
-			// 	bundler: 'turbopack'
-			// })
 		},
 
-		resolveExtensions: ['.mdx', '.tsx', '.ts', '.jsx', '.js', '.mjs', '.json', 'css']
+		resolveExtensions: ['.mdx', '.tsx', '.ts', '.jsx', '.js', '.mjs', 'json', 'css']
 	},
 	webpack: config => {
 		config.module.rules.push({
@@ -34,6 +31,21 @@ const nextConfig: NextConfig = {
 		return config
 	},
 
+	async headers() {
+		return [
+			{
+				source: '/images/:path*',
+				headers: [
+					{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }
+				]
+			}
+		]
+	},
+	images: {
+		deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+		formats: ['image/avif', 'image/webp'],
+		minimumCacheTTL: 31536000
+	},
 	async redirects() {
 		return [
 			{

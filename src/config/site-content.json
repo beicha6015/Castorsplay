@@ -25,11 +25,11 @@
 	"artImages": [
 		{
 			"id": "cat",
-			"url": "/images/art/cat.png"
+			"url": "/images/art/cat.webp"
 		},
 		{
 			"id": "a46372ff45bc5524",
-			"url": "/images/art/a46372ff45bc5524.jpg"
+			"url": "/images/art/a46372ff45bc5524.webp"
 		}
 	],
 	"currentArtImageId": "a46372ff45bc5524",
@@ -40,7 +40,7 @@
 		},
 		{
 			"id": "b0e38888b78052f1",
-			"url": "/images/background/b0e38888b78052f1.jpg"
+			"url": "/images/background/b0e38888b78052f1.webp"
 		}
 	],
 	"currentBackgroundImageId": "b0e38888b78052f1",

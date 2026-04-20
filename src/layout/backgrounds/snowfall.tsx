@@ -16,7 +16,7 @@ interface Snowflake {
 const SNOWFLAKE_IMAGES = ['/images/christmas/snowflake/1.webp', '/images/christmas/snowflake/2.webp', '/images/christmas/snowflake/3.webp']
 const DOT_RATIO = 0.8
 
-export default function SnowfallBackground({ zIndex, count = 125 }: { zIndex: number; count?: number }) {
+export default function SnowfallBackground({ zIndex, count = 60 }: { zIndex: number; count?: number }) {
 	const [snowflakes, setSnowflakes] = useState<Snowflake[]>([])
 
 	useEffect(() => {
