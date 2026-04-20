@@ -16,7 +16,7 @@
       "id": 3,
       "type": "mixed",
       "content": "bys:Today is better than yesterday 💪",
-      "imageUrl": "/images/bys.jpg"
+      "imageUrl": "/images/bys.webp"
     },
     {
       "id": 4,
@@ -27,7 +27,7 @@
       "id": 5,
       "type": "mixed",
       "content": "gcy：所愿即所得",
-      "imageUrl": "/images/gcy.jpg"
+      "imageUrl": "/images/gcy.webp"
     },
     {
       "id": 6,
@@ -53,7 +53,7 @@
       "id": 10,
       "type": "mixed",
       "content": "zy：多年以后，是否还会记得这样一个平凡的夜晚，和朋友忙完在校门口小聚，在樱花树下吹着晚风，走走停停，漫无目的。",
-      "imageUrl": "/images/zy.jpg"
+      "imageUrl": "/images/zy.webp"
     }
   ]
 }
